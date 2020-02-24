@@ -76,7 +76,7 @@ function getPostgratorConfigFromCommandLineArgs(commandLineArgs) {
 }
 
 function getPostgratorConfigFromEnvironment() {
-    let host, port, database, username, password;
+    let host; let port; let database; let username; let password;
     if (process.env.DATABASE_URL) {
         const dbUrl = url.parse(process.env.DATABASE_URL);
         host = dbUrl.hostname;
