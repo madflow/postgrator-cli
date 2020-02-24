@@ -1,11 +1,16 @@
 language: node_js
-dist: xenial
+dist: bionic
 sudo: required
 
 node_js:
     - 6
     - 10
     - 12
+
+env:
+    global:
+        - PGHOST=localhost
+        - PGPORT=5432
 
 services:
     - postgresql
