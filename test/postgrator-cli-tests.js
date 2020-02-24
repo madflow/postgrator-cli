@@ -367,6 +367,8 @@ function buildTestsForOptions(options) {
         console.log('\n----- testing empty password-----');
         options.config = '';
         options.password = '';
+        options.host = '';
+
         postgratorCli.run(options, (err) => {
             restoreOptions();
             assert(err.length > 0);
@@ -469,7 +471,7 @@ function buildTestsForOptions(options) {
 const options = {
     to: 3,
     driver: 'pg',
-    host: '127.0.0.1',
+    host: 'localhost',
     port: '5432',
     database: 'postgrator',
     username: 'postgrator',
