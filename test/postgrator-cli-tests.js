@@ -367,7 +367,7 @@ function buildTestsForOptions(options) {
         console.log('\n----- testing empty password-----');
         options.config = '';
         options.password = '';
-
+        console.log(process.env);
         postgratorCli.run(options, (err) => {
             restoreOptions();
             assert(err.length > 0);
