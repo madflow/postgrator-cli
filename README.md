@@ -59,11 +59,11 @@ you will find it helpful to start with 000s or some large number for file organi
 
 ### The tool
 
-You can specify all the parameters from command line (see below) but the easiest way is to:
+You can specify all the parameters from the command line, environment variables or a `postgrator.json` configuration file. The probably easiest way is to:
 
-* Create `postgrator.json` configuration file. For example:
+* Create a `postgrator.json` configuration file. For example:
 
-```
+```JSON
 {
     "migrationDirectory": "migrations",
     "driver": "pg",
@@ -122,6 +122,20 @@ Examples
   4. Migrate to latest version using default configuration    postgrator
   file (postgrator.json)
 ```
+
+### Environment variables
+
+The following environment variables are used.
+
+* DATABASE_URL
+* POSTGRATOR_MIGRATION_DIRECTORY
+* POSTGRATOR_DRIVER
+* POSTGRATOR_DBHOST
+* POSTGRATOR_DBPORT
+* POSTGRATOR_DB
+* POSTGRATOR_DBUSERNAME
+* POSTGRATOR_DBPASSWORD
++ POSTGRATOR_SECURE
 
 ## Tests
 To run postgrator tests locally, you'll need:

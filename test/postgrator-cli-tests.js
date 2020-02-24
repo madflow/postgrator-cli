@@ -465,6 +465,46 @@ function buildTestsForOptions(options) {
             return callback();
         });
     });
+
+    tests.push(resetMigrations);
+    tests.push((callback) => {
+        console.log('\n----- use-env: using DATABASE_URL -----');
+        const envOptions = {
+            to: 1,
+            'use-env': true,
+        };
+        process.env.POSTGRATOR_MIGRATION_DIRECTORY = 'test/migrations';
+        process.env.DATABASE_URL = connectionString;
+        postgratorCli.run(envOptions, (err, migrations) => {
+            assert.ifError(err);
+            assert.equal(migrations.length, 1);
+            delete process.env.POSTGRATOR_MIGRATION_DIRECTORY;
+            delete process.env.DATABASE_URL;
+            return callback();
+        });
+    });
+    tests.push(resetMigrations);
+    tests.push((callback) => {
+        console.log('\n----- use-env: using POSTGRATOR_ vars -----');
+        const envOptions = {
+            to: 1,
+            'use-env': true,
+        };
+        process.env.POSTGRATOR_DRIVER = 'pg';
+        process.env.POSTGRATOR_MIGRATION_DIRECTORY = 'test/migrations';
+        process.env.POSTGRATOR_DBHOST = options.host;
+        process.env.POSTGRATOR_DBPORT = options.port;
+        process.env.POSTGRATOR_DB = options.database;
+        process.env.POSTGRATOR_DBUSERNAME = options.username;
+        process.env.POSTGRATOR_DBPASSWORD = options.password;
+        process.env.POSTGRATOR_SECURE = false;
+        postgratorCli.run(envOptions, (err, migrations) => {
+            assert.ifError(err);
+            assert.equal(migrations.length, 1);
+            delete process.env.POSTGRATOR_MIGRATION_DIRECTORY;
+            return callback();
+        });
+    });
 }
 
 const options = {
@@ -477,6 +517,8 @@ const options = {
     password: 'postgrator',
     'migration-directory': 'test/migrations',
 };
+
+const connectionString = `postgresql://${options.username}:${options.password}@${options.host}:${options.port}/${options.database}`;
 
 // Command line parameters
 buildTestsForOptions(options);
