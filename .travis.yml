@@ -10,9 +10,6 @@ node_js:
 services:
     - postgresql
 
-before_install:
-    - sudo service postgresql restart
-
 before_script:
     - psql -c 'create database postgrator'
     - psql -c 'create role postgrator'
