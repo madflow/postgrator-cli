@@ -367,9 +367,10 @@ function buildTestsForOptions(options) {
         console.log('\n----- testing empty password-----');
         options.config = '';
         options.password = '';
-        options.help = '';
-        options.version = '';
-        postgratorCli.run(options, (err) => {
+
+        postgratorCli.run(options, (err, migrations) => {
+            console.log(err);
+            console.log(migrations);
             restoreOptions();
             assert(err.length > 0);
             return callback(null);
