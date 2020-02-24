@@ -265,7 +265,9 @@ function run(commandLineArgs, callback) {
         // Create postgrator
         let postgrator;
         try {
+            console.log(postgratorConfig);
             postgrator = new Postgrator(postgratorConfig);
+            console.log(postgrator);
         } catch (err) {
             printUsage();
             callback(err);
