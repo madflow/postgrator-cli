@@ -21,8 +21,9 @@ before_install:
 
 
 before_script:
-    - psql -c 'create database postgrator' -U postgres
-    - psql -c 'create role postgrator' -U postgres
+    - psql -c 'create database postgrator'
+    - psql -c 'create role postgrator'
+    - psql -c 'alter user postgrator with encrypted password $$postgrator$$'
     - psql -c 'grant all privileges on database postgrator to postgrator'
 
 script:
