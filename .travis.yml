@@ -2,6 +2,10 @@ language: node_js
 dist: bionic
 sudo: required
 
+node_js:
+    - 10
+    - 12
+
 services:
     - postgresql
 
@@ -13,7 +17,9 @@ env:
         - PGPORT=5432
 
 before_script:
-    - psql -c 'create database postgrator' -U postgrator
+    - psql -c 'create database postgrator' -U postgres
+    - psql -c 'create role postgrator' -U postgres
+    - psql -c 'grant all privileges on database postgrator to postgrator'
 
 script:
     - psql -c "SELECT version();"
