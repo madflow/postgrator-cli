@@ -9,16 +9,8 @@ node_js:
 services:
     - postgresql
 
-env:
-    global:
-        - PGUSER=postgres
-        - PGPASSWORD=postgres
-        - PGDATABASE=postgres
-        - PGPORT=5432
-
 before_install:
     - sudo service postgresql restart
-
 
 before_script:
     - psql -c 'create database postgrator'
