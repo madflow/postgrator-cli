@@ -1,0 +1,20 @@
+language: node_js
+dist: bionic
+sudo: required
+
+services:
+    - postgresql
+
+env:
+    global:
+        - PGUSER=postgrator
+        - PGPASSWORD=postgrator
+        - PGDATABASE=postgrator
+        - PGPORT=5432
+
+before_script:
+    - psql -c 'create database postgrator' -U postgrator
+
+script:
+    - psql -c "SELECT version();"
+    - npm run test
