@@ -1,7 +1,7 @@
 {
     "migrationDirectory": "test/migrations",
     "driver": "pg",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 5432,
     "database": "postgrator",
     "username": "postgrator",
