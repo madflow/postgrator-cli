@@ -11,10 +11,14 @@ services:
 
 env:
     global:
-        - PGUSER=postgrator
-        - PGPASSWORD=postgrator
-        - PGDATABASE=postgrator
+        - PGUSER=postgres
+        - PGPASSWORD=postgres
+        - PGDATABASE=postgres
         - PGPORT=5432
+
+before_install:
+    - sudo service postgresql restart
+
 
 before_script:
     - psql -c 'create database postgrator' -U postgres
