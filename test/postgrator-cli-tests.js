@@ -471,7 +471,7 @@ function buildTestsForOptions(options) {
 const options = {
     to: 3,
     driver: 'pg',
-    host: 'localhost',
+    host: '127.0.0.1',
     port: '5432',
     database: 'postgrator',
     username: 'postgrator',
